@@ -10,6 +10,10 @@
     <arg name="debug" value="false"/>
   </include>
 
+  <!-- loads the controllers -->
+<rosparam file="$(find armgazebo)/config/config.yaml" command="load" />
+<node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/simple_model" args="base_to_second_joint_position_controller joint_state_controller --shutdown-timeout 3"/>
+
   <!-- send fake joint values -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="use_gui" value="TRUE"/>

@@ -114,3 +114,20 @@
 		</visual>
 	</link>
 </robot>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/simple_model</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- transmission -->
+  <transmission name="base_to_second_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="motor1">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="base_link__link_01">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
