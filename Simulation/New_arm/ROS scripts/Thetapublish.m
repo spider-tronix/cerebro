@@ -5,8 +5,7 @@ rosinit;
 %custom message file simulation/theta
 
 pub_name = rospublisher('/controltheta','catkin_ws/theta');
-
-% sub_name=rossubscriber("/thetafeedback",@callbacktheta)
+sub_name=rossubscriber("/thetafeedback",@callbacktheta)
 
 pause(2)
 
@@ -47,14 +46,14 @@ while true
     for i=1:+1:3
         error_prev(1,i)   = error_theta(1,i) ;    
     end
-    theta.Data = 'A';         %place for input for theta1
-%   theta.theta2=         %place for input for theta2
-%   theta.theta3=         %place for input for theta3
+    theta.theta1=delta_theta(1,1)         %place for input for theta1
+    theta.theta2=delta_theta(1,2)         %place for input for theta2
+    theta.theta3=delta_theta(1,3)         %place for input for theta3
     send(pub_name,theta)
 end 
         
-% Callback function for theta feedback from Gazebo
-% function callbacktheta(msg)
-%     xyz=msg.position
-% end
+ Callback function for theta feedback from Gazebo
+ function callbacktheta(msg)
+     xyz=msg.position
+ end
 
